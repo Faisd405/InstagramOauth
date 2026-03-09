@@ -23,7 +23,11 @@ class Provider extends AbstractProvider
 
     protected function getAuthUrl($state): string
     {
-        return $this->buildAuthUrlFromBase('https://www.instagram.com/oauth/authorize', $state);
+        return str_replace(
+            '&amp;',
+            '&',
+            $this->buildAuthUrlFromBase('https://www.instagram.com/oauth/authorize', $state)
+        );
     }
 
     protected function getTokenUrl(): string
