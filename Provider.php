@@ -21,13 +21,21 @@ class Provider extends AbstractProvider
 
     protected $scopes = ['instagram_business_basic'];
 
+    protected function buildAuthUrlFromBase($url, $state)
+    {
+        $query = http_build_query(
+            $this->getCodeFields($state),
+            '',
+            '&',
+            $this->encodingType
+        );
+
+        return $url . '?' . urldecode($query);
+    }
+
     protected function getAuthUrl($state): string
     {
-        return str_replace(
-            '&amp;',
-            '&',
-            $this->buildAuthUrlFromBase('https://www.instagram.com/oauth/authorize', $state)
-        );
+        return $this->buildAuthUrlFromBase('https://www.instagram.com/oauth/authorize', $state);
     }
 
     protected function getTokenUrl(): string
