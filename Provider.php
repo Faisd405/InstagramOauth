@@ -10,7 +10,7 @@ class Provider extends AbstractProvider
 {
     public const IDENTIFIER = 'INSTAGRAM';
 
-    protected $scopeSeparator = ' ';
+    protected $scopeSeparator = ',';
 
     /**
      * The user fields being requested.
@@ -23,7 +23,7 @@ class Provider extends AbstractProvider
 
     protected function getAuthUrl($state): string
     {
-        return $this->buildAuthUrlFromBase('https://api.instagram.com/oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase('https://www.instagram.com/oauth/authorize', $state);
     }
 
     protected function getTokenUrl(): string
